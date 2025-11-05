@@ -1,3 +1,9 @@
+// 이 코드를 추가하여 이 파일이 서버에서만 실행되도록 강제합니다.
+import 'server-only'; 
+import fs from 'fs';
+import path from 'path';
+// (나머지 코드는 그대로)
+
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
