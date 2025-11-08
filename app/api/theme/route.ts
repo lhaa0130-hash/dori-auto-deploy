@@ -17,9 +17,10 @@ const owner = "lhaa0130-hash"; // ⚠️ 여기에 사용자님의 GitHub ID를 
 const repo = "dori-auto-deploy";
 const branch = "main";
 
-// ⭐️ Gemini API 키 설정 (최신 방식: 객체 안에 apiKey로 전달)
+// Gemini API 키 설정
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-const model = ai.getGenerativeModel({ model: "gemini-2.5-flash" });
+// ⭐️ 최종 수정: getGenerativeModel -> getGeminiModel
+const model = ai.getGeminiModel({ model: "gemini-2.5-flash" });
 
 // Octokit 초기화
 const octokit = new Octokit({ auth: githubToken });
