@@ -19,8 +19,8 @@ const branch = "main";
 
 // Gemini API 키 설정
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-// ⭐️ 최종 수정: getGenerativeModel -> getGeminiModel
-const model = ai.getGeminiModel({ model: "gemini-2.5-flash" });
+// ⭐️ 최종 수정: getGeminiModel -> getGenerativeModel (원래 이름으로 복구)
+const model = ai.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 // Octokit 초기화
 const octokit = new Octokit({ auth: githubToken });
