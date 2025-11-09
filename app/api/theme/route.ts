@@ -2,8 +2,8 @@
 import 'server-only';
 // GitHub API를 사용하기 위한 라이브러리
 import { Octokit } from 'octokit';
-// ⭐️ 최종 수정: GoogleGenAI -> GoogleGenerativeAI (클래스 이름 복구)
-import { GoogleGenerativeAI } from "@google/genai"; 
+// ⭐️ 클래스 이름은 GoogleGenAI로 유지
+import { GoogleGenAI } from "@google/genai"; 
 import { Buffer } from 'buffer';
 import path from 'path';
 import fs from 'fs';
@@ -15,12 +15,12 @@ import fs from 'fs';
 // GitHub 토큰과 레포지토리 정보 
 const githubToken = process.env.GITHUB_TOKEN;
 const owner = "lhaa0130-hash"; // ⚠️ 여기에 사용자님의 GitHub ID를 직접 입력하세요!
-const repo = "dori-auto-deploy";
+const repo = "dori-auto-deploy-v4"; // ⚠️ 변경된 리포지토리 이름으로 수정!
 const branch = "main";
 
-// ⭐️ Gemini API 키 설정 (GoogleGenerativeAI 클래스 사용)
-const ai = new GoogleGenerativeAI({ apiKey: process.env.GEMINI_API_KEY });
-// 함수 이름은 getGenerativeModel로 유지
+// Gemini API 키 설정 (GoogleGenAI 클래스 사용)
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+// ⭐️ 최종 수정: getGenerativeModel 함수로 복구
 const model = ai.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 // Octokit 초기화
@@ -104,7 +104,7 @@ export async function POST(request: Request) {
         const { command } = await request.json(); 
 
         if (!command || typeof command !== 'string') {
-            return new Response(JSON.stringify({ success: false, error: '유효한 명령(command)이 필요합니다.' }), { status: 400 });
+            return new Response(JSON.stringify({ success: false, error: '유효한 명령(command)' }), { status: 400 });
         }
 
         // 1. 현재 CSS 파일 내용 가져오기
